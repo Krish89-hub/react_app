@@ -6,6 +6,8 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 In the project directory, you can run:
 
+## API Setup
+Change API Url to the you backend API Url e.g. http://localhost:8000/api/ for default laravel api url in `src/models/util.model.ts`
 ### `npm start`
 
 Runs the app in the development mode.\
