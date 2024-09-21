@@ -3,6 +3,7 @@ import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import LoginResponseModel from "../models/login-reponse.mode";
 import ApiResponse from "../models/api-response.model";
+import Utils from "../models/util.model";
 
 function Login(){
     const [email,setEmail] = useState("");
@@ -12,7 +13,7 @@ function Login(){
     const handleOnFormSubmit = (e:any)=>{
         e.preventDefault();
         setIsLoading(true);
-        axios.post<ApiResponse<LoginResponseModel>>('http://localhost:8000/api/login',{email,password},{headers:{"Accept":"application/json"}}).then(resp=>{
+        axios.post<ApiResponse<LoginResponseModel>>(Utils.apiUrl+'login',{email,password},{headers:{"Accept":"application/json"}}).then(resp=>{
             setIsLoading(false);
             if(resp.data&& resp.data.success == true){
                 localStorage.setItem("blogcms_token",resp.data.data.token)

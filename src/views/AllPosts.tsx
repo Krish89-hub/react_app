@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import PostModel from "../models/post.model";
 import ApiResponse from "../models/api-response.model";
+import Utils from "../models/util.model";
 
 function AllPosts() {
     const [posts, setPosts] = useState<PostModel[]>([]);
@@ -10,7 +11,7 @@ function AllPosts() {
     const [isLoading,setIsLoading] = useState<boolean>(false);
     useEffect(() => {
         setIsLoading(true)
-        axios.get<ApiResponse<PostModel[]>>('http://localhost:8000/api/posts',{headers:{"Authorization":"Bearer "+token}}).then(resp => {
+        axios.get<ApiResponse<PostModel[]>>(Utils.apiUrl+'posts',{headers:{"Authorization":"Bearer "+token}}).then(resp => {
             setIsLoading(false)
             if (resp.data && resp.data.success) {
                 setPosts(resp.data.data);
